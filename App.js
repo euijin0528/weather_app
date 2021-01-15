@@ -17,6 +17,7 @@ export default class extends React.Component{
     const {
       data: {
         main:{temp},
+        name,
         weather
       }
     } = await axios.get(
@@ -26,10 +27,9 @@ export default class extends React.Component{
     this.setState({
       isLoading: false,
       condition: weather[0].main,
-      temp
+      temp,
+      name
     })
-
-    console.log(weather);
   }
 
   getLocation = async() =>{
@@ -50,7 +50,7 @@ export default class extends React.Component{
     this.getLocation();
   }
   render(){
-    const{isLoading, temp, condition} = this.state
-    return isLoading ? (<Loading/>) : (<Weather temp={Math.round(temp)} condition={condition}/>);
+    const{isLoading, temp, condition, name} = this.state
+    return isLoading ? (<Loading/>) : (<Weather temp={Math.round(temp)} condition={condition} name={name}/>);
   }
 }

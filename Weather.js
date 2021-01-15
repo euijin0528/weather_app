@@ -9,26 +9,26 @@ const weatherOptions = {
     Thunderstorm: {
         iconName: "weather-lightning",
         gradient: ["#373B44", "#4286f4"],
-        title: "Thunderstorm in the house",
-        subtitle: "Actually, outside of the house",
+        title: "우릉릉 쾅쾅 🌩",
+        subtitle: "번개 맞지 않게 조심하세요 ⚡️",
       },
       Drizzle: {
         iconName: "weather-hail",
         gradient: ["#89F7FE", "#66A6FF"],
-        title: "Drizzle",
-        subtitle: "Is like rain, but gay 🏳️‍🌈",
+        title: "이슬비가 보슬보슬 💦",
+        subtitle: "그래도 우산은 챙겨야겠지요? ☂️",
       },
       Rain: {
         iconName: "weather-rainy",
         gradient: ["#00C6FB", "#005BEA"],
         title: "비 내리는 중 🌧",
-        subtitle: "외출하실 때 우산 꼭 챙기세요!",
+        subtitle: "외출하실 때 우산 꼭 챙기세요! ☔️",
       },
       Snow: {
         iconName: "weather-snowy",
         gradient: ["#7DE2FC", "#B9B6E5"],
-        title: "Cold as balls",
-        subtitle: "Do you want to build a snowman? Fuck no.",
+        title: "눈이 펑펑 내리는 중 ❄️",
+        subtitle: "안전운전 해야겠죠? ☃️",
       },
       Atmosphere: {
         iconName: "weather-hail",
@@ -37,42 +37,42 @@ const weatherOptions = {
       Clear: {
         iconName: "weather-sunny",
         gradient: ["#FF7300", "#FEF253"],
-        title: "Sunny as fuck",
-        subtitle: "Go get your ass burnt",
+        title: "맑은 날이에요 ☀️",
+        subtitle: "얼굴 타지 않게 조심하세요 🔥",
       },
       Clouds: {
         iconName: "weather-cloudy",
         gradient: ["#D7D2CC", "#304352"],
-        title: "Clouds",
-        subtitle: "I know, fucking boring",
+        title: "구름이 드리운 날 ☁️",
+        subtitle: "비가 올수도 있을 것 같네요 💧",
       },
       Mist: {
         iconName: "weather-fog",
         gradient: ["#4DA0B0", "#D39D38"],
-        title: "Mist!",
-        subtitle: "It's like you have no glasses on.",
-      },
-      Dust: {
-        iconName: "weather-fog",
-        gradient: ["#4DA0B0", "#D39D38"],
-        title: "Dusty",
-        subtitle: "Thanks a lot China.",
-      },
-      Haze: {
-        iconName: "weather-fog",
-        gradient: ["#4DA0B0", "#D39D38"],
-        title: "Haze",
-        subtitle: "Just don't go outside.",
+        title: "옅은 안개가 꼈어요",
+        subtitle: "습도가 조금 높을지도 몰라요 🌫",
       },
       Fog: {
         iconName: "weather-fog",
         gradient: ["#4DA0B0", "#D39D38"],
-        title: "Fog",
-        subtitle: "Thanks a lot China.",
+        title: "짙은 안개가 꼈어요",
+        subtitle: "가시거리가 짧으니 주의하세요",
       },
+      Dust: {
+        iconName: "weather-fog",
+        gradient: ["#4DA0B0", "#D39D38"],
+        title: "먼지투성이네요",
+        subtitle: "마스크 잘 쓰셔야겠어요 😷",
+      },
+      Haze: {
+        iconName: "weather-fog",
+        gradient: ["#4DA0B0", "#D39D38"],
+        title: "미세먼지가 많아요",
+        subtitle: "마스크 잘 쓰셔야겠어요 😷",
+      }
   }
 
-  export default function Weather({ temp, condition }) {
+  export default function Weather({ temp, condition, name}) {
     return (
       <LinearGradient
         colors={weatherOptions[condition].gradient}
@@ -86,6 +86,7 @@ const weatherOptions = {
             color="white"
           />
           <Text style={styles.temp}>{temp}°c</Text>
+          <Text style={styles.name}>{name}</Text>
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.title}>{weatherOptions[condition].title}</Text>
@@ -98,6 +99,7 @@ const weatherOptions = {
   }
 
 Weather.propTypes = {
+    name : PropTypes.string.isRequired,
     temp : PropTypes.number.isRequired,
     condition : PropTypes.oneOf([
         "Thundestorm",
@@ -124,6 +126,10 @@ const styles = StyleSheet.create({
     fontSize: 60,
     color: "white"
   },
+  name: {
+    fontSize : 30,
+    color : "white"
+  },
   topContainer: {
     flex: 2,
     justifyContent: "center",
@@ -132,7 +138,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "white",
-    fontSize: 44,
+    fontSize: 40,
     fontWeight: "300",
     marginBottom: 10,
     textAlign: "left"
@@ -140,7 +146,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontWeight: "600",
     color: "white",
-    fontSize: 24,
+    fontSize: 20,
     textAlign: "left"
   },
   textContainer: {
