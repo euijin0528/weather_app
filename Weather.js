@@ -67,8 +67,8 @@ const weatherOptions = {
       Haze: {
         iconName: "weather-fog",
         gradient: ["#4DA0B0", "#D39D38"],
-        title: "미세먼지가 많아요",
-        subtitle: "마스크 잘 쓰셔야겠어요 😷",
+        title: "옅은 안개가 꼈어요",
+        subtitle: "대기 오염이 있을지도 몰라요!",
       }
   }
 
